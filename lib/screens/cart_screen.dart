@@ -1,8 +1,14 @@
+// ignore_for_file: unused_element, deprecated_member_use
+
 import 'package:flutter/material.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
 
+class CartScreen extends StatefulWidget {
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   _buildCartItem() {
     return Container(
       margin: EdgeInsets.all(20.0),
@@ -22,7 +28,6 @@ class CartScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                  
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -90,7 +95,6 @@ class CartScreen extends StatelessWidget {
               ],
             ),
           ),
-          
         ],
       ),
     );
@@ -99,63 +103,23 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.deepOrangeAccent,
-        title: Text(
-          "1",
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.deepOrangeAccent,
+          title: Text(
+            "Cart Screen",
+          ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-                    children: [
-                      _buildCartItem(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Estimated Delivery Time:",
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            "2 Days",
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total Cost:",
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            "\$500",
-                            style: TextStyle(
-                                color: Colors.green[700],
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 80.0,
-                      ),
-                    ],
-                  ),
-      ),
-
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              
+            ],
+          ),
+        ),
         bottomSheet: Container(
           height: 100,
-          
           decoration:
               BoxDecoration(color: Theme.of(context).primaryColor, boxShadow: [
             BoxShadow(
@@ -177,8 +141,6 @@ class CartScreen extends StatelessWidget {
               onPressed: () {},
             ),
           ),
-        )
-          
-    );
+        ));
   }
 }

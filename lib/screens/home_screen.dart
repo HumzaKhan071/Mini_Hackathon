@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, import_of_legacy_library_into_null_safe, must_be_immutable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,6 @@ import 'package:mini_hackathon/Tab/Tabs.dart';
 import 'package:mini_hackathon/details/mask-details.dart';
 
 import 'package:mini_hackathon/details/masks-details.dart';
-
 
 import 'package:mini_hackathon/models/shoes-model.dart';
 import 'package:mini_hackathon/models/tshirt-model.dart';
@@ -18,7 +17,6 @@ import 'package:mini_hackathon/screens/serach.dart';
 
 import 'package:mini_hackathon/screens/widgets/custom_drawer.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -27,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int indexselected = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           GestureDetector(
-            onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>FavoriteScreen())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (_) => FavoriteScreen())),
             child: Icon(
               Icons.favorite_outline,
               size: 43,
@@ -47,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           GestureDetector(
-            onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>CartScreen())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (_) => CartScreen())),
             child: Icon(
               CupertinoIcons.cart,
               size: 43,
@@ -56,9 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      drawer: CustomDrawer(
-
-      ),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,21 +232,21 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          
-         
           BottomNavigationBarItem(
               icon: IconButton(
-                
-                icon:Icon(Icons.person),
+                icon: Icon(Icons.person),
                 color: Colors.red,
-                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>ProfileScreen())),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ProfileScreen())),
               ),
               label: "Profile"),
           BottomNavigationBarItem(
               icon: IconButton(
-                icon:Icon(Icons.more_horiz,),
-                onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>SearchScreen())),
-                
+                icon: Icon(
+                  Icons.more_horiz,
+                ),
+                onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => SearchScreen())),
                 color: Colors.red,
               ),
               label: "Search")
@@ -257,10 +256,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class TshirtItem extends StatelessWidget {
+class TshirtItem extends StatefulWidget {
   final TshirtModel TshirtData;
+  int indexselected = 0;
 
   TshirtItem({required this.TshirtData});
+
+  @override
+  State<TshirtItem> createState() => _TshirtItemState();
+}
+
+class _TshirtItemState extends State<TshirtItem> {
+  get index => null;
 
   @override
   Widget build(BuildContext context) {
@@ -269,7 +276,7 @@ class TshirtItem extends StatelessWidget {
           context,
           CupertinoPageRoute(
               builder: (ctx) => TshirtDetails(
-                    TshirtData: TshirtData,
+                    TshirtData: widget.TshirtData,
                   ))),
       child: Container(
         margin: EdgeInsets.only(bottom: 20),
@@ -283,10 +290,10 @@ class TshirtItem extends StatelessWidget {
                   left: 10,
                   right: 10),
               decoration: BoxDecoration(
-                color: TshirtData.color,
+                color: widget.TshirtData.color,
                 borderRadius: BorderRadius.circular(28),
               ),
-              child: Image.asset(TshirtData.assetname),
+              child: Image.asset(widget.TshirtData.assetname),
             ),
             Positioned(
                 bottom: 0,
@@ -304,7 +311,7 @@ class TshirtItem extends StatelessWidget {
                         )),
                     alignment: Alignment.bottomCenter,
                     child: Text(
-                      TshirtData.name,
+                      widget.TshirtData.name,
                       style: GoogleFonts.openSans(
                           fontWeight: FontWeight.w500, fontSize: 20),
                     ),
@@ -315,6 +322,7 @@ class TshirtItem extends StatelessWidget {
               right: 10,
               child: LikeButtons(),
             ),
+          
           ],
         ),
       ),
@@ -322,11 +330,17 @@ class TshirtItem extends StatelessWidget {
   }
 }
 
-class ShoeItem extends StatelessWidget {
+class ShoeItem extends StatefulWidget {
   final ShoeModel shoeData;
 
   ShoeItem({required this.shoeData});
 
+  @override
+  State<ShoeItem> createState() => _ShoeItemState();
+}
+
+class _ShoeItemState extends State<ShoeItem> {
+  int indexselected = 0;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -334,7 +348,7 @@ class ShoeItem extends StatelessWidget {
           context,
           CupertinoPageRoute(
               builder: (ctx) => ShoeDetails(
-                    shoeData: shoeData,
+                    shoeData: widget.shoeData,
                   ))),
       child: Container(
         margin: EdgeInsets.only(bottom: 20),
@@ -348,10 +362,10 @@ class ShoeItem extends StatelessWidget {
                   left: 10,
                   right: 10),
               decoration: BoxDecoration(
-                color: shoeData.color,
+                color: widget.shoeData.color,
                 borderRadius: BorderRadius.circular(28),
               ),
-              child: Image.asset(shoeData.assetname),
+              child: Image.asset(widget.shoeData.assetname),
             ),
             Positioned(
                 bottom: 0,
@@ -369,7 +383,7 @@ class ShoeItem extends StatelessWidget {
                         )),
                     alignment: Alignment.bottomCenter,
                     child: Text(
-                      shoeData.name,
+                      widget.shoeData.name,
                       style: GoogleFonts.openSans(
                           fontWeight: FontWeight.w500, fontSize: 20),
                     ),
@@ -380,6 +394,7 @@ class ShoeItem extends StatelessWidget {
               right: 10,
               child: LikeButtons1(),
             ),
+           
           ],
         ),
       ),

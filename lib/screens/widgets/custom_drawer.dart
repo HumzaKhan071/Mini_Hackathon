@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
-import 'package:mini_hackathon/screens/auth.dart';
+
 import 'package:mini_hackathon/screens/home_screen.dart';
 import 'package:mini_hackathon/screens/login_screen.dart';
 import 'package:mini_hackathon/screens/profile_screen.dart';
